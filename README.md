@@ -5,13 +5,11 @@
     <br />
     <a href="https://app.swaggerhub.com/apis/dimasyudhana/EventappRESTfulAPI/1.0.1#/"><strong>| Open API Documentation |</
     <br />
-    <br />
   </p>
 
  <p align="center">
     <br />
-    <a href="https://event-planning-phi.vercel.app/"><strong>| Open API Documentation |</
-    <a href="https://event-planning-phi.vercel.app/"><strong>| User Interface |</strong></a>
+    <a href="https://event-planning-phi.vercel.app/"><strong>| User Interface |</
     <br />
   </p>
 
