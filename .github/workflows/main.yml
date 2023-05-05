@@ -1,0 +1,49 @@
+name: otomasi deploy server
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout
+      uses: actions/checkout@v3
+    -
+      name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    -
+      shell: bash
+      env:
+        GCP: ${{ secrets.GCP }}
+      run: |
+          echo "$GCP" > auth.json
+    -
+      name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    -
+      name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/be16app:latest 
+    - 
+      name: multiple command
+      uses: appleboy/ssh-action@v0.1.9
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          docker stop ${{ secrets.CNAME }}
+          docker rm ${{ secrets.CNAME }}
+          docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/be16app:latest
+          docker run --name ${{ secrets.CNAME }} -d --network="host" -e Username=${{ secrets.DBUSER }} -e Password=${{ secrets.DBPASS }} -e Host=${{ secrets.DBHOST }} -e AppPort=${{ secrets.APP_PORT }} -e Port=${{ secrets.DBPORT }} -e Name=${{ secrets.DBNAME }} -e JWTSecret=${{ secrets.JWT_KEY }} -e Credential=${{ secrets.CREDENTIAL }} -e ProjectID=${{ secrets.PROJECTID }} -e BucketName=${{ secrets.BUCKETNAME }} -e Path=${{ secrets.PATH }} ${{ secrets.DOCKERHUB_USERNAME }}/be16app:latest
