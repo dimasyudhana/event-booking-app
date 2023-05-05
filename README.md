@@ -1,19 +1,19 @@
-# Go Event
-
-<div align="center">
-  <p>
-    RESTful API : Event Booking App
-  </p>
+# RESTful API : Event Booking App
 
   <p align="center">
     Group Project 3 Unit 2 Alterra Academy
     <br />
     <a href="https://app.swaggerhub.com/apis/dimasyudhana/EventappRESTfulAPI/1.0.1#/"><strong>| Open API Documentation |</
-    <a href="https://event-planning-phi.vercel.app/"><strong>| Open API Documentation |</strong></a>
     <br />
     <br />
   </p>
-</div># event-booking-app
+
+ <p align="center">
+    <br />
+    <a href="https://event-planning-phi.vercel.app/"><strong>| Open API Documentation |</
+    <a href="https://event-planning-phi.vercel.app/"><strong>| User Interface |</strong></a>
+    <br />
+  </p>
 
 ## About the Project
 
@@ -46,9 +46,9 @@
 - [Cloud Computing - Amazon Web Services (Cloud Server)](https://aws.amazon.com/)
 - [Docker (Container images)](https://www.docker.com)
 
-# Contact
-
-- [Dimas Yudhana](https://github.com/dimasyudhana) (developer and maintainer)
-- [Wanta Zulfikri](https://github.com/wanta-zulfikri) (person in charge and maintainer server)
+## Contact
+- [FE - Azhari Aziz](https://github.com/Azhari12) (developer and maintainer)
+- [BE - Dimas Yudhana](https://github.com/dimasyudhana) (developer and maintainer)
+- [BE - Wanta Zulfikri](https://github.com/wanta-zulfikri) (person in charge and maintainer server)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
