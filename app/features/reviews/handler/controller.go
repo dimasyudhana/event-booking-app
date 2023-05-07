@@ -22,7 +22,7 @@ func (rc *ReviewController) WriteReview() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var input RequestWriteReview
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT"+err.Error(), nil))
 		}
@@ -60,7 +60,7 @@ func (rc *ReviewController) UpdateReview() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var input RequestUpdateReview
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT"+err.Error(), nil))
 		}
@@ -98,7 +98,7 @@ func (rc *ReviewController) UpdateReview() echo.HandlerFunc {
 func (rc *ReviewController) DeleteReview() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT"+err.Error(), nil))
 		}

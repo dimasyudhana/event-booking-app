@@ -1,10 +1,12 @@
 package config
 
 import (
+	"log"
 	"os"
 	"sync"
 
 	"github.com/dimasyudhana/event-booking-app/config/common"
+	"github.com/joho/godotenv"
 )
 
 type Configuration struct {
@@ -36,10 +38,10 @@ func GetConfiguration() *Configuration {
 
 func InitConfiguration() *Configuration {
 
-	// err := godotenv.Load()
-	// if err != nil {
-	// 	log.Fatal("Error loading .env file")
-	// }
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
 	var defaultConfig Configuration
 	defaultConfig.Port = os.Getenv("AppPort")

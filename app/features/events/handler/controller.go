@@ -77,7 +77,7 @@ func (ec *EventController) CreateEventWithTickets() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var input RequestCreateEventWithTickets
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT"+err.Error(), nil))
 		}
@@ -233,7 +233,7 @@ func (ec *EventController) GetEvents() echo.HandlerFunc {
 func (ec *EventController) GetEventsByAttendance() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))
 		}
@@ -310,7 +310,7 @@ func (ec *EventController) GetEventsByAttendance() echo.HandlerFunc {
 func (ec *EventController) GetEventsByUserID() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))
 		}
@@ -388,7 +388,7 @@ func (ec *EventController) UpdateEvent() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var input RequestUpdateEvent
 		tokenString := c.Request().Header.Get("Authorization")
-		claims, err := middlewares.ValidateJWT2(tokenString)
+		claims, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))
 		}
@@ -455,7 +455,7 @@ func (ec *EventController) UpdateEvent() echo.HandlerFunc {
 func (ec *EventController) DeleteEvent() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		tokenString := c.Request().Header.Get("Authorization")
-		_, err := middlewares.ValidateJWT2(tokenString)
+		_, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			c.Logger().Error(err.Error())
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))

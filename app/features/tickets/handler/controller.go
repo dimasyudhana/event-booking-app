@@ -21,7 +21,7 @@ func New(h tickets.Service) tickets.Handler {
 func (tc *TicketController) GetTickets() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		tokenString := c.Request().Header.Get("Authorization")
-		_, err := middlewares.ValidateJWT2(tokenString)
+		_, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			c.Logger().Error(err.Error())
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))
@@ -68,7 +68,7 @@ func (tc *TicketController) UpdateTicket() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var inputs []RequestUpdateTicket
 		tokenString := c.Request().Header.Get("Authorization")
-		_, err := middlewares.ValidateJWT2(tokenString)
+		_, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			c.Logger().Error(err.Error())
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))
@@ -108,7 +108,7 @@ func (tc *TicketController) UpdateTicket() echo.HandlerFunc {
 func (tc *TicketController) DeleteTicket() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		tokenString := c.Request().Header.Get("Authorization")
-		_, err := middlewares.ValidateJWT2(tokenString)
+		_, err := middlewares.ValidateJWT(tokenString)
 		if err != nil {
 			c.Logger().Error(err.Error())
 			return c.JSON(http.StatusUnauthorized, helper.ResponseFormat(http.StatusUnauthorized, "Missing or Malformed JWT. "+err.Error(), nil))
